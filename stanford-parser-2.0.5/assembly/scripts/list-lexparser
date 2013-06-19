@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+(
+        curr_pwd=${PWD}
+        cd $(dirname $0)
+        script_pwd=${PWD}
+
+	jar -tvf ${script_pwd}/../lib/stanford-parser-models*.jar | awk ' { if ( $NF ~ /.ser.gz/ ) { print $NF } }' 
+
+
+        cd $curr_pwd
+
+)
+
