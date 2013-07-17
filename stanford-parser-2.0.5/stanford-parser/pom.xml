@@ -47,4 +47,21 @@
 
     </dependencies>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>target/generated-sources/jflex</directory>
+                <includes>
+                    <include>**/*.java</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>de.jflex</groupId>
+                <artifactId>maven-jflex-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

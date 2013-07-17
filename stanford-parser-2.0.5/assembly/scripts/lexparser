@@ -9,6 +9,10 @@ if [ ! $# -ge 1 ]; then
   exit
 fi
 
+if [[ ""$DEBUG"" != """" ]]; then
+	XDEBUG="-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4001,suspend=y"
+fi
+
 (
 	CURR_PWD=${PWD}
 	cd $(dirname $0)
@@ -34,7 +38,7 @@ fi
 		done
 	fi
 	
-	java -mx150m -cp ${SP_CLASSPATH} edu.stanford.nlp.parser.lexparser.LexicalizedParser -outputFormat "penn,typedDependencies" $LEXMODEL $*
+	java -mx150m $XDEBUG -cp ${SP_CLASSPATH} edu.stanford.nlp.parser.lexparser.LexicalizedParser -outputFormat "penn,typedDependencies" $LEXMODEL $*
 
 	cd $CURR_PWD
 )
